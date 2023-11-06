@@ -29,43 +29,43 @@ public class UserController {
 	@GetMapping()
 	public String getUsers(ModelMap model) {
 		model.addAttribute("users", userService.getUsers());
-		return "/users/index";
+		return "index";
 	}
 
 	@GetMapping(value = "/user")
 	public String getUser(ModelMap model, @RequestParam(value = "id", required = false) Long id) {
 		model.addAttribute("user", userService.getUserById(id));
-		return "/users/show";
+		return "show";
 	}
 
 	@GetMapping("/new")
 	public String newUser(ModelMap model) {
 		model.addAttribute("newUser", new User());
-		return "/users/new";
+		return "new";
 	}
 
 	@PostMapping("/create")
 	public String createUser(@ModelAttribute("user") User user) {
 		userService.createUser(user);
-		return "redirect:/";
+		return "redirect:";
 	}
 
 	@GetMapping("/edit")
 	public String editUser(Model model, @RequestParam(value = "id", required = false) Long id) {
 		model.addAttribute("editUser", userService.getUserById(id));
-		return "/users/edit";
+		return "edit";
 	}
 
 	@DeleteMapping("/delete")
 	public String deleteUser(@ModelAttribute("user") User user) {
 		userService.removeUser(user);
-		return "redirect:/";
+		return "redirect:";
 	}
 
 	@PatchMapping("/update")
 	public String updateUser(@ModelAttribute("user") User user) {
 		userService.updateUser(user);
-		return "redirect:/";
+		return "redirect:";
 	}
 
 }
